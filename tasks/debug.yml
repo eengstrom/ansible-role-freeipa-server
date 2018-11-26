@@ -9,6 +9,7 @@
 - name: Show configuration
   vars: 
     msg: |
+      freeipa_server_hostname:       '{{ freeipa_server_hostname }}'
       freeipa_server_fqdn:           '{{ freeipa_server_fqdn }}'
       freeipa_server_domain:         '{{ freeipa_server_domain }}'
       freeipa_server_realm:          '{{ freeipa_server_realm }}'

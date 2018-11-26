@@ -4,6 +4,10 @@
 # Type: Bool
 freeipa_server_install_pkgs: True
 
+# Install FreeIPA related Python packages via Pip
+# Type: Bool
+freeipa_server_install_python_pkgs: False
+
 # Automatically setting an entry in /etc/hosts
 # Type: Bool
 freeipa_server_manage_host: True

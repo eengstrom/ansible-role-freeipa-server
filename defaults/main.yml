@@ -12,23 +12,58 @@ freeipa_server_install_python_pkgs: False
 # Type: Bool
 freeipa_server_manage_host: True
 
+# FreeIPA server manages DNS
+# Type: Boolean
+freeipa_server_manage_dns: False
+
+# FreeIPA server default host/domain/realm/ip options
+# Type: Str
+freeipa_server_hostname: "{{ ansible_hostname }}"
+freeipa_server_fqdn:     "{{ ansible_fqdn }}"
+freeipa_server_domain:   "{{ ansible_domain }}"
+freeipa_server_realm:    "{{ ansible_domain | upper }}"
+freeipa_server_ip:       "{{ ansible_default_ipv4.address }}"
+
+# FreeIPA server starting uid
+# Type: Int
+freeipa_server_idstart:  5000
+
+# FreeIPA upgrtream DNS server - only used if FreeIPA is managing DNS.
+# Type: Str
+freeipa_server_dns_fwdr: "8.8.8.8"
+
 # The base command for the FreeIPA server installation
 # Type: Str
 freeipa_server_install_base_command: ipa-server-install --unattended
 
 # The default FreeIPA server installation options
 # Type: List
-freeipa_server_install_options:
-  - "--realm={{ freeipa_server_realm }}"
+freeipa_server_install_options_default:
+  - "--hostname={{ freeipa_server_fqdn }}"
   - "--domain={{ freeipa_server_domain }}"
-  - "--setup-dns"
-  - "--ds-password {{ freeipa_server_ds_password }}"
-  - "--admin-password {{ freeipa_server_admin_password }}"
-  - "--mkhomedir"
-  - "--hostname={{ freeipa_server_fqdn | default(ansible_fqdn) }}"
+  - "--realm={{ freeipa_server_realm }}"
   - "--ip-address={{ freeipa_server_ip }}"
+  - "--idstart={{ freeipa_server_idstart }}"
+  - "--ds-password {{ freeipa_server_ds_password | mandatory }}"
+  - "--admin-password {{ freeipa_server_admin_password | mandatory }}"
+
+# FreeIPA server installation options for DNS
+# Type: List
+freeipa_server_install_options_setup_dns:
+  - "--setup-dns"
   - "--no-host-dns"
-  - "--idstart=5000"
   - "--ssh-trust-dns"
-  - "--forwarder=8.8.8.8"
   - "--auto-forwarders"
+  - "--forwarder={{ freeipa_server_dns_fwdr | mandatory }}"
+
+# Additional user/playbook installation options 
+# Type: List
+#freeipa_server_install_options_user: []
+
+# Combined list of installation options - NOT expected to be set by user
+# Type: List
+freeipa_server_install_options:
+  "{{ freeipa_server_install_options_default
+    + (freeipa_server_install_options_setup_dns if freeipa_server_manage_dns else [])
+    + (freeipa_server_install_options_user | default([])) }}"
+

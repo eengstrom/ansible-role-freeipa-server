@@ -19,6 +19,9 @@
 - include_tasks: install-pkgs.yml
   when: freeipa_server_install_pkgs
 
+- include_tasks: install-pip-pkgs.yml
+  when: freeipa_server_install_python_pkgs
+
 - include_tasks: preinst.yml
 
 - include_tasks: freeipa-server-install.yml

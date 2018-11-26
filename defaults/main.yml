@@ -10,7 +10,7 @@ freeipa_server_install_python_pkgs: False
 
 # Automatically setting an entry in /etc/hosts
 # Type: Bool
-freeipa_server_manage_host: True
+freeipa_server_manage_host: False
 
 # The base command for the FreeIPA server installation
 # Type: Str

@@ -25,5 +25,5 @@
 
 - name: Display all variables/facts known for a host
   debug:
-    var: ansible_default_ipv4
+    var: hostvars[inventory_hostname]
   tags: [ never, debug_all ]

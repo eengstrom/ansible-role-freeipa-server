@@ -30,7 +30,7 @@ freeipa_server_idstart:  5000
 
 # FreeIPA upgrtream DNS server - only used if FreeIPA is managing DNS.
 # Type: Str
-freeipa_server_dns_fwdr: "8.8.8.8"
+#freeipa_server_dns_fwdr: "8.8.8.8"
 
 # The base command for the FreeIPA server installation
 # Type: Str

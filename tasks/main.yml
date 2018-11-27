@@ -11,10 +11,16 @@
       paths:
         - vars
 
+- include_tasks: debug.yml
+  tags: [ never, debug ]
+
 - include_tasks: dependencies.yml
 
 - include_tasks: install-pkgs.yml
   when: freeipa_server_install_pkgs
+
+- include_tasks: install-pip-pkgs.yml
+  when: freeipa_server_install_python_pkgs
 
 - include_tasks: preinst.yml
 

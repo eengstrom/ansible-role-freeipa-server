@@ -12,12 +12,12 @@
 # ------
 # "EASY" approach: Manually put entry in to /etc/pam.d/common-session
 # ------
-#- name: Fix for mkhomedir option on Ubuntu <= 16.x
-#  lineinfile:
-#    path: /etc/pam.d/common-session
-#    insertafter: '^session.*pam_sss.so'
-#    regex: '^session.*pam_mkhomedir.so.*'
-#    line: 'session	optional 	pam_mkhomedir.so skel=/etc/skel/'
+# - name: Fix for mkhomedir option on Ubuntu <= 16.x
+#   lineinfile:
+#     path: /etc/pam.d/common-session
+#     insertafter: '^session.*pam_sss.so'
+#     regex: '^session.*pam_mkhomedir.so.*'
+#     line: 'session	optional 	pam_mkhomedir.so skel=/etc/skel/'
 
 # ------
 # "BETTER" approach: use `debconf` and `pam-auth-update` so change
@@ -31,9 +31,9 @@
     line: "{{ item.line }}"
   with_items:
     - { regexp: '^Default:',
-          line: 'Default: yes' }
+        line: 'Default: yes' }
     - { regexp: '^#?\s+.*pam_mkhomedir.so.*',
-          line: '	required	pam_mkhomedir.so  umask=0022 skel=/etc/skel/ silent' }
+        line: '	required	pam_mkhomedir.so  umask=0022 skel=/etc/skel/ silent' }
   register: freeipa_pam_mkhomedir
 
 - name: update debconf for libpam-runtime

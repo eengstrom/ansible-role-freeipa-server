@@ -8,18 +8,18 @@ galaxy_info:
   license: BSD-3-Clause
   min_ansible_version: 2.5.0
   platforms:
-  - name: EL
-    versions:
-      - 7
-  - name: Fedora
-    versions:
-      - 26
-      - 27
-  - name: Ubuntu
-    versions:
-      - xenial
-      - artful
-      - bionic
+    - name: EL
+      versions:
+        - 7
+    - name: Fedora
+      versions:
+        - 26
+        - 27
+    - name: Ubuntu
+      versions:
+        - xenial
+        - artful
+        - bionic
   galaxy_tags:
     - dns
     - freeipa

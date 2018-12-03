@@ -2,19 +2,19 @@
 
 # Install FreeIPA packages (set to False if you're using `timorunge.freeipa`)
 # Type: Bool
-freeipa_server_install_pkgs: True
+freeipa_server_install_pkgs: true
 
 # Install FreeIPA related Python packages via Pip
 # Type: Bool
-freeipa_server_install_python_pkgs: False
+freeipa_server_install_python_pkgs: false
 
 # Automatically setting an entry in /etc/hosts
 # Type: Bool
-freeipa_server_manage_host: True
+freeipa_server_manage_host: true
 
 # FreeIPA server manages DNS
 # Type: Boolean
-freeipa_server_manage_dns: False
+freeipa_server_manage_dns: false
 
 # FreeIPA server default host/domain/realm/ip options
 # Type: Str
@@ -56,9 +56,9 @@ freeipa_server_install_options_setup_dns:
   - "--auto-forwarders"
   - "--forwarder={{ freeipa_server_dns_fwdr | mandatory }}"
 
-# Additional user/playbook installation options 
+# Additional user/playbook installation options
 # Type: List
-#freeipa_server_install_options_user: []
+# freeipa_server_install_options_user: []
 
 # Combined list of installation options - NOT expected to be set by user
 # Type: List
@@ -66,4 +66,3 @@ freeipa_server_install_options:
   "{{ freeipa_server_install_options_default
     + (freeipa_server_install_options_setup_dns if freeipa_server_manage_dns else [])
     + (freeipa_server_install_options_user | default([])) }}"
-

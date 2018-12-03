@@ -1,5 +1,8 @@
 ---
 
+dependencies:
+  - { role: eengstrom.freeipa-common }
+
 galaxy_info:
   author: Timo Runge
   company: N/A
@@ -31,4 +34,3 @@ galaxy_info:
     - sso
     - sssd
     - system
-dependencies: []

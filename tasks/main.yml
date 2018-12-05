@@ -1,32 +1,31 @@
 ---
 
 - name: Gather OS specific variables
-  include_vars: "{{ lookup('first_found', params) }}"
-  vars:
-    params:
-      files:
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
         - "{{ ansible_os_family }}-{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
         - "{{ ansible_os_family }}-{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
-      paths:
-        - vars
+      skip: true
 
 - name: Show configuration
   vars:
     msg: |
-      freeipa_server_hostname:       '{{ freeipa_server_hostname }}'
-      freeipa_server_fqdn:           '{{ freeipa_server_fqdn }}'
-      freeipa_server_domain:         '{{ freeipa_server_domain }}'
-      freeipa_server_realm:          '{{ freeipa_server_realm }}'
-      freeipa_server_ip:             '{{ freeipa_server_ip }}'
-      freeipa_server_idstart:        '{{ freeipa_server_idstart }}'
-      freeipa_server_ds_password:    '{{ freeipa_server_ds_password | default('UNDEFINED') }}'
-      freeipa_server_admin_password: '{{ freeipa_server_admin_password | default('UNDEFINED') }}'
+      freeipa_server_hostname:     '{{ freeipa_server_hostname }}'
+      freeipa_server_fqdn:         '{{ freeipa_server_fqdn }}'
+      freeipa_server_ip:           '{{ freeipa_server_ip }}'
+      freeipa_domain:              '{{ freeipa_domain }}'
+      freeipa_realm:               '{{ freeipa_realm }}'
+      freeipa_server_idstart:      '{{ freeipa_server_idstart }}'
+      freeipa_admin_principal:     '{{ freeipa_admin_principal | default('UNDEFINED') }}'
+      freeipa_admin_password:      '{{ freeipa_admin_password | default('UNDEFINED') }}'
+      freeipa_ds_password:         '{{ freeipa_ds_password | default('UNDEFINED') }}'
       -----
       freeipa_server_install_options: {{ freeipa_server_install_options }}
   debug:
     msg: "{{ msg.split('\n') }}"
-    # verbosity: 1
+    verbosity: 1
 
 - include_tasks: dependencies.yml
 

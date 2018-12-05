@@ -9,3 +9,4 @@ freeipa_server_pkgs:
   - ipa-server-common
   - ipa-server-dns
   - ipa-server-trust-ad
+  - sssd-tools

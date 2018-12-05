@@ -8,3 +8,4 @@ freeipa_server_pkgs:
   - freeipa-common
   - freeipa-server
   - freeipa-server-dns
+  - sssd-tools

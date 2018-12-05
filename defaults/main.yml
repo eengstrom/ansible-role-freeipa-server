@@ -8,13 +8,17 @@ freeipa_server_install_pkgs: true
 # Type: Bool
 freeipa_server_install_python_pkgs: false
 
-# Automatically setting an entry in /etc/hosts
+# Manage host entry in /etc/hosts
 # Type: Bool
 freeipa_server_manage_host: true
 
-# FreeIPA server manages DNS
-# Type: Boolean
+# Should the FreeIPA server manages DNS
+# Type: Bool
 freeipa_server_manage_dns: false
+
+# Configure (aka "install") the FreeIPA server
+# Type: Bool
+freeipa_server_run_installer: true
 
 # FreeIPA server default host/fqdn/ip options
 # Type: Str

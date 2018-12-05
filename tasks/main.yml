@@ -38,3 +38,4 @@
 - include_tasks: preinst.yml
 
 - include_tasks: freeipa-server-install.yml
+  when: freeipa_server_run_installer

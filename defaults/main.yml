@@ -61,7 +61,9 @@ freeipa_server_install_options_setup_dns:
 
 # Additional user/playbook installation options
 # Type: List
-# freeipa_server_install_options_user: []
+# freeipa_server_install_options_user:
+# # e.g.
+#  - "--mkhomedir"
 
 # Combined list of installation options - NOT expected to be set by user
 # Type: List

@@ -1,0 +1,21 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: install iproute (Ubuntu <= 16.x) -- needed for `ansible_default_ipv4`
+      package:
+        name: iproute
+        state: present
+        update_cache: true
+      when:
+        - ansible_distribution|string == 'Ubuntu'
+        - ansible_distribution_major_version|int <= 16
+
+    - name: install iproute2 (Ubuntu >= 18.x) -- needed for `ansible_default_ipv4`
+      package:
+        name: iproute2
+        state: present
+        update_cache: true
+      when:
+        - ansible_distribution|string == 'Ubuntu'
+        - ansible_distribution_major_version|int >= 18

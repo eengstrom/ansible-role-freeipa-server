@@ -1,13 +1,6 @@
 ---
 
-- name: Dry-Run the FreeIPA server installer
-  debug:
-    msg: |
-      {{ freeipa_server_install_base_command }}
-      {{ freeipa_server_install_options | join(' ') }}
-    verbosity: 1
-
-- name: Run the FreeIPA server installer
+- name: Run the FreeIPA Server installer
   args:
     creates: /etc/ipa/default.conf
   command: >

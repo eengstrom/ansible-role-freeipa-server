@@ -1,8 +1,12 @@
 ---
 
-# Install FreeIPA packages (set to False if you're using `timorunge.freeipa`)
+# Install FreeIPA packages (set to False if you're using source build; e.g. `timorunge.freeipa`)
 # Type: Bool
 freeipa_server_install_pkgs: true
+
+# Configure (aka "install") the FreeIPA server
+# Type: Bool
+freeipa_server_run_installer: true
 
 # Install FreeIPA related Python packages via Pip
 # Type: Bool
@@ -15,10 +19,6 @@ freeipa_server_manage_host: true
 # Should the FreeIPA server manages DNS
 # Type: Bool
 freeipa_server_manage_dns: false
-
-# Configure (aka "install") the FreeIPA server
-# Type: Bool
-freeipa_server_run_installer: true
 
 # FreeIPA server default host/fqdn/ip options
 # Type: Str

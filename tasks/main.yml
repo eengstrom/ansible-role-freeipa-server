@@ -9,24 +9,6 @@
         - "{{ ansible_os_family }}.yml"
       skip: true
 
-- name: Show configuration
-  vars:
-    msg: |
-      freeipa_server_hostname:     '{{ freeipa_server_hostname }}'
-      freeipa_server_fqdn:         '{{ freeipa_server_fqdn }}'
-      freeipa_server_ip:           '{{ freeipa_server_ip }}'
-      freeipa_domain:              '{{ freeipa_domain }}'
-      freeipa_realm:               '{{ freeipa_realm }}'
-      freeipa_server_idstart:      '{{ freeipa_server_idstart }}'
-      freeipa_admin_principal:     '{{ freeipa_admin_principal | default('UNDEFINED') }}'
-      freeipa_admin_password:      '{{ freeipa_admin_password | default('UNDEFINED') }}'
-      freeipa_ds_password:         '{{ freeipa_ds_password | default('UNDEFINED') }}'
-      -----
-      freeipa_server_install_options: {{ freeipa_server_install_options }}
-  debug:
-    msg: "{{ msg.split('\n') }}"
-    verbosity: 1
-
 - include_tasks: dependencies.yml
 
 - include_tasks: install-pkgs.yml

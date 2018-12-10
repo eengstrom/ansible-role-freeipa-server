@@ -5,8 +5,13 @@
 freeipa_server_install_pkgs: true
 
 # Configure (aka "install") the FreeIPA server
+# NOTE the UNUSUAL nature of this variable:  It references a
+# variable that is defined (and presumably true) in the dependent
+# role: `freeipa-replica`.  If UNDEFINED, will default to true,
+# and therefore run the server installer routines.
 # Type: Bool
-freeipa_server_run_installer: true
+#freeipa_server_run_installer: true  # default (if not replica server)
+freeipa_server_run_installer: not(freeipa_is_replica_server | d(false))
 
 # Install FreeIPA related Python packages via Pip
 # Type: Bool
@@ -69,7 +74,7 @@ freeipa_server_install_options_setup_dns:
 # # e.g.
 #  - "--mkhomedir"
 
-# Combined list of installation options - NOT expected to be set by user
+# The complete list of server install options:
 # Type: List
 freeipa_server_install_options:
   "{{ freeipa_server_install_options_default

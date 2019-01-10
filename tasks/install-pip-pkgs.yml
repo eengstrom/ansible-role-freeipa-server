@@ -4,3 +4,7 @@
   pip:
     name: "{{ freeipa_server_pip_pkgs }}"
     state: present
+  delay: 10
+  register: result
+  retries: 3
+  until: result is succeeded
